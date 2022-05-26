@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Textbooks Have Gotten Good, Like Really Good | Cached</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Textbooks Have Gotten Good, Like Really Good" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In a recent interview, they presented the problem they were facing and asked about the methods I would use to go about solving it. I started off with the heuristics behind the method (Bayesian inference if you are curious) and continued into some of the more detailed advantages and disadvantages behind why I would choose this method. I think they were a bit surprised about this as my original background is in economics, which is traditionally a domain that employs frequentist based methodologies. This led the interviewers to asking, “It seems you are quite familiar with Bayesian statistics and given your background, how did you come to using Bayesian methods within your projects?”. To which I responded, “I first read about the concept in Thinking Fast and Slow by Daniel Kahneman and became deeply intrigued, so I read a few textbooks about Bayesian statistics and Bayesian methods in machine learning.” The interviewers responses, “You read textbooks?”." />
+<meta property="og:description" content="In a recent interview, they presented the problem they were facing and asked about the methods I would use to go about solving it. I started off with the heuristics behind the method (Bayesian inference if you are curious) and continued into some of the more detailed advantages and disadvantages behind why I would choose this method. I think they were a bit surprised about this as my original background is in economics, which is traditionally a domain that employs frequentist based methodologies. This led the interviewers to asking, “It seems you are quite familiar with Bayesian statistics and given your background, how did you come to using Bayesian methods within your projects?”. To which I responded, “I first read about the concept in Thinking Fast and Slow by Daniel Kahneman and became deeply intrigued, so I read a few textbooks about Bayesian statistics and Bayesian methods in machine learning.” The interviewers responses, “You read textbooks?”." />
+<link rel="canonical" href="https://gstechschulte.github.io/cached-projects/2021/09/14/Textbooks-Have-Gotten-Good,-Like-Really-Good.html" />
+<meta property="og:url" content="https://gstechschulte.github.io/cached-projects/2021/09/14/Textbooks-Have-Gotten-Good,-Like-Really-Good.html" />
+<meta property="og:site_name" content="Cached" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-14T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Textbooks Have Gotten Good, Like Really Good" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-09-14T00:00:00-05:00","datePublished":"2021-09-14T00:00:00-05:00","description":"In a recent interview, they presented the problem they were facing and asked about the methods I would use to go about solving it. I started off with the heuristics behind the method (Bayesian inference if you are curious) and continued into some of the more detailed advantages and disadvantages behind why I would choose this method. I think they were a bit surprised about this as my original background is in economics, which is traditionally a domain that employs frequentist based methodologies. This led the interviewers to asking, “It seems you are quite familiar with Bayesian statistics and given your background, how did you come to using Bayesian methods within your projects?”. To which I responded, “I first read about the concept in Thinking Fast and Slow by Daniel Kahneman and became deeply intrigued, so I read a few textbooks about Bayesian statistics and Bayesian methods in machine learning.” The interviewers responses, “You read textbooks?”.","headline":"Textbooks Have Gotten Good, Like Really Good","mainEntityOfPage":{"@type":"WebPage","@id":"https://gstechschulte.github.io/cached-projects/2021/09/14/Textbooks-Have-Gotten-Good,-Like-Really-Good.html"},"url":"https://gstechschulte.github.io/cached-projects/2021/09/14/Textbooks-Have-Gotten-Good,-Like-Really-Good.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/cached-projects/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gstechschulte.github.io/cached-projects/feed.xml" title="Cached" /><link rel="shortcut icon" type="image/x-icon" href="/cached-projects/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/cached-projects/">Cached</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/cached-projects/about/">About Me</a><a class="page-link" href="/cached-projects/search/">Search</a><a class="page-link" href="/cached-projects/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Textbooks Have Gotten Good, Like Really Good</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-14T00:00:00-05:00" itemprop="datePublished">
+        Sep 14, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>In a recent interview, they presented the problem they were facing and asked about the methods I would use to go about solving it. I started off with the heuristics behind the method (Bayesian inference if you are curious) and continued into some of the more detailed advantages and disadvantages behind why I would choose this method. I think they were a bit surprised about this as my original background is in economics, which is traditionally a domain that employs frequentist based methodologies. This led the interviewers to asking, “It seems you are quite familiar with Bayesian statistics and given your background, how did you come to using Bayesian methods within your projects?”. To which I responded, “I first read about the concept in Thinking Fast and Slow by Daniel Kahneman and became deeply intrigued, so I read a few textbooks about Bayesian statistics and Bayesian methods in machine learning.” The interviewers responses, “You read textbooks?”.</p>
+
+<p>Initially, I was a little confused as their response inclined that reading technical textbooks is something that is not normal and or only the advanced have the capabilities to do. So I started to ask myself “How am I able to learn from such technical textbooks?” and started to swipe through the pdf textbooks from various authors and publishing dates. I came to the realization that the textbooks I most often read or refer back to are the ones that were recently published. This observation lead to the conclusion that modern textbooks are, well, very modern and interactive—directional linking throughout sections, hyperlinks to GitHub repositories and Google Colab notebooks for reproducible code, and excellent visualizations of the concepts presented throughout that chapter.</p>
+
+<p>The improvement in technical textbooks is really a result of three ingredients:</p>
+
+<ul>
+  <li>1.) Utilizing Jupyter Notebooks / Google Colab</li>
+  <li>2.) Incorporating GitHub public repositories</li>
+  <li>3.) The author(s) and or community providing code for the chapter’s content</li>
+</ul>
+
+<p>Kevin Murphy’s latest release “Probabilistic Machine Learning - An Introduction” has it’s own <a href="https://github.com/probml/pml-book/tree/main/pml1">GitHub repository</a> with <a href="https://colab.research.google.com/github/probml/pml-book/blob/master/pml1/figure_notebooks/chapter7_linear_algebra_figures.ipynb">Google Colab notebooks</a> for generating figures for each chapter presented in the book. Not only that, but also <a href="https://github.com/probml/pml-book/blob/main/pml1/supplements/chap7.md">supplementary material</a> links for each chapter with additional information, typically Google Colab notebooks, showcasing the software libraries used to generate the figures.</p>
+
+<p>When these three ingredients are brought together, you now have an interactive textbook in which some of the barriers to entry, in the form of prior knowledge and skillsets, are broken down and allow for a wider audience to gain said new knowledge and skillsets. Furthermore, and where traditional non-interactive textbooks lack, an interactive textbook’s main advantages are in the form of <strong>trial and error</strong>, <strong>math formalisms</strong> $\rightarrow$ <strong>code</strong>, and indirect <strong>efficient programming principles</strong>.</p>
+
+<p>The mysterious power of <strong>trial and error</strong> could be the biggest advantage. Simply playing around with the code, inputing different values here and there to see how the outputs are affected allows one to gain a level of intuition that is not as easily accessible with textbooks without code or visualizations. Try something. It might not work and if it doesn’t, try something else—an error is just another opportunity to run another trial.</p>
+
+<p>After having read the definitions and formalisms, going from <strong>math</strong> $\rightarrow$ <strong>code</strong> can be a difficult task and often renders the question, “where do I even start?”.</p>
+
+<p>Building off of math $\rightarrow$ code, interactive textbooks allow one to see how <em>others</em> have programmed the algorithm. For me, as a self taught programmer, this is a huge value add as it allows me to learn more <strong>efficient and better programming principles</strong> (assuming the open source code is “efficient”). As well, reading code produced by others allows one to continually develop their skillsets and knowledge within programming—another valuable effect.</p>
+
+<p>These three ingredients is where the bulk of the value add comes. A couple other points worth pointing out are (1) familiarizing yourself with the formalisms pays dividends, and (2) you should read the textbooks where the author resonates with you. Becoming knowledgeable with the formalisms pays dividends as you read other textbooks, research papers, and even venture outside of the field you are in. Their may be some subtleties in notations, but you can recognize this and still manage your way through the technical content you are reading. Secondly, it is often the case I will have three to four books about the same “material”, but I will only “connect” with one or two of the author’s way of describing the concepts. So, don’t be afraid to download several books on the same material (which is easily doable from <a href="https://www.pdfdrive.com/">pdf drive</a>).</p>
+
+  </div><a class="u-url" href="/cached-projects/2021/09/14/Textbooks-Have-Gotten-Good,-Like-Really-Good.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/cached-projects/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/cached-projects/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/cached-projects/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Ideas, thoughts, and projects</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/GStechschulte" target="_blank" title="GStechschulte"><svg class="svg-icon grey"><use xlink:href="/cached-projects/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/__gsteck__" target="_blank" title="__gsteck__"><svg class="svg-icon grey"><use xlink:href="/cached-projects/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
