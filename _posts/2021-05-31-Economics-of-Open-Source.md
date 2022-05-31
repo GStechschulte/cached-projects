@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Data based marketplaces - A breakthrough worth investigating more
+title: Economics of Open Source
 ---
 
 Why does open-source work? 
