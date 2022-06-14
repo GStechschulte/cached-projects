@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Data based marketplaces - A breakthrough worth investigating more
+title: Data-Driven Marketplaces
 ---
 
 Uber, AirBnB, Music, Job platforms
