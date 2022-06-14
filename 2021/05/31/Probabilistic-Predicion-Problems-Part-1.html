@@ -95,7 +95,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -126,7 +126,7 @@ window.onload = wrap_img;
 <table>
   <tbody>
     <tr>
-      <td>It is possible to assume the set of possible actions is to pick a class label (or “reject” option) as in classification or a real valued scalar as in a point estimate of a parameter.However, it is possible to assume the set of possible actions is to pick a probability distribution over some value of interest (paramter or class label). That is, we want to perform <strong>probabilistic  prediction</strong> or <strong>probabilistic forecasting</strong> rather than predicting a single value / scalar. From a decision theoretic approach, we assume the true state of nature is a <em>distribution</em>, $h = p(Y</td>
+      <td>It is possible to assume the set of possible actions is to pick a class label (or “reject” option) in classification or a real valued scalar as in a point estimate of a parameter. However, it is also possible to assume the set of possible actions is to pick a probability distribution over some value of interest (paramter or class label). That is, we want to perform probabilistic  prediction or probabilistic forecasting rather than predicting a single value / scalar. From a decision theoretic approach, we assume the true state of nature is a distribution, $h = p(Y</td>
       <td>x)$, with the action being another distribution, $a = q(Y</td>
       <td>x)$.</td>
     </tr>
@@ -137,7 +137,7 @@ window.onload = wrap_img;
 
 <h3 id="proper-scoring-rules">Proper Scoring Rules</h3>
 
-<p>Maximizing a proper scoring rule will force the model to match the true probabilities, i.e., the probabilities are calibrated. For example, when the weather person states the probability of rain is $70%$, then it should rain about $70%$ of the time.</p>
+<p>Maximizing a proper scoring rule will force the model to match the true probabilities, i.e., the probabilities are calibrated. For example, when the weather person states the probability of rain is $70\%$, then it should rain about $70\%$ of the time.</p>
 
 <p>The following are proper scoring “loss functions”:</p>
 
@@ -154,6 +154,8 @@ window.onload = wrap_img;
 </ul>
 
 <h3 id="model-selection-and-evaluation">Model Selection and Evaluation</h3>
+
+<p>To check the results of modeling and inference, we would like to know how well a model fits observed data $x$, which we can quantify with the evidence or marginal likelihood.</p>
 
   </div><a class="u-url" href="/cached-projects/2021/05/31/Probabilistic-Predicion-Problems-Part-1.html" hidden></a>
 </article>
