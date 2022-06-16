@@ -8,17 +8,17 @@
 <meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Probabilistic Prediction Problems - Part 1" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="I have been wanting to organize my notes on probabilistic prediction problems into a more structured and “high level” format. This post is a result of this, and the notes are primarily from Probabilistic Machine Learning (Introduction and Advanced) by Kevin Murphy, Statistical Rethinking by Richard McElreath, and Bayesian Modeling and Computation in Python." />
-<meta property="og:description" content="I have been wanting to organize my notes on probabilistic prediction problems into a more structured and “high level” format. This post is a result of this, and the notes are primarily from Probabilistic Machine Learning (Introduction and Advanced) by Kevin Murphy, Statistical Rethinking by Richard McElreath, and Bayesian Modeling and Computation in Python." />
-<link rel="canonical" href="https://gstechschulte.github.io/cached-projects/2021/05/31/Probabilistic-Predicion-Problems-Part-1.html" />
-<meta property="og:url" content="https://gstechschulte.github.io/cached-projects/2021/05/31/Probabilistic-Predicion-Problems-Part-1.html" />
+<meta name="description" content="Part one deals with why parameters (or latent variables) are problematic and common loss functions for comparing two probability distributions." />
+<meta property="og:description" content="Part one deals with why parameters (or latent variables) are problematic and common loss functions for comparing two probability distributions." />
+<link rel="canonical" href="https://gstechschulte.github.io/cached-projects/probability/2021/05/31/Probabilistic-Predicion-Problems-Part-1.html" />
+<meta property="og:url" content="https://gstechschulte.github.io/cached-projects/probability/2021/05/31/Probabilistic-Predicion-Problems-Part-1.html" />
 <meta property="og:site_name" content="Cached" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-05-31T00:00:00-05:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Probabilistic Prediction Problems - Part 1" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-05-31T00:00:00-05:00","datePublished":"2021-05-31T00:00:00-05:00","description":"I have been wanting to organize my notes on probabilistic prediction problems into a more structured and “high level” format. This post is a result of this, and the notes are primarily from Probabilistic Machine Learning (Introduction and Advanced) by Kevin Murphy, Statistical Rethinking by Richard McElreath, and Bayesian Modeling and Computation in Python.","headline":"Probabilistic Prediction Problems - Part 1","mainEntityOfPage":{"@type":"WebPage","@id":"https://gstechschulte.github.io/cached-projects/2021/05/31/Probabilistic-Predicion-Problems-Part-1.html"},"url":"https://gstechschulte.github.io/cached-projects/2021/05/31/Probabilistic-Predicion-Problems-Part-1.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-05-31T00:00:00-05:00","datePublished":"2021-05-31T00:00:00-05:00","description":"Part one deals with why parameters (or latent variables) are problematic and common loss functions for comparing two probability distributions.","headline":"Probabilistic Prediction Problems - Part 1","mainEntityOfPage":{"@type":"WebPage","@id":"https://gstechschulte.github.io/cached-projects/probability/2021/05/31/Probabilistic-Predicion-Problems-Part-1.html"},"url":"https://gstechschulte.github.io/cached-projects/probability/2021/05/31/Probabilistic-Predicion-Problems-Part-1.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/cached-projects/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gstechschulte.github.io/cached-projects/feed.xml" title="Cached" /><link rel="shortcut icon" type="image/x-icon" href="/cached-projects/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -100,13 +100,22 @@ window.onload = wrap_img;
 </span></p>
 
     
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/cached-projects/categories/#probability">probability</a>
+        
+      
+      </p>
+    
 
     </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>I have been wanting to organize my notes on <em>probabilistic prediction problems</em> into a more structured and “high level” format. This post is a result of this, and the notes are primarily from Probabilistic Machine Learning (Introduction and Advanced) by Kevin Murphy, Statistical Rethinking by Richard McElreath, and Bayesian Modeling and Computation in Python.</p>
+    <p>Part one deals with why parameters (or latent variables) are problematic and common loss functions for comparing two probability distributions.</p>
 
-<h2 id="the-problem-with-parameters-and-probabilistic-models">The Problem with Parameters and Probabilistic Models</h2>
+<h1 id="probabilistic-prediction-problems">Probabilistic Prediction Problems</h1>
+
+<h2 id="the-problem-with-parameters">The Problem with Parameters</h2>
 
 <p>Three main monsters when it comes to “modeling”:</p>
 <ol>
@@ -121,17 +130,25 @@ window.onload = wrap_img;
   <li>Is the goal to understand <em>causes</em>?</li>
 </ul>
 
-<p>Adding variables and parameters to a model can help to reveal hidden effects and improve estimates. However, more parameters always results in a better model “fit”. While more complex models fit the data better, they often predict new data worse. Models that have many parameters tend to overfit more than simpler models.</p>
+<p>Regarding monster (1), adding variables and parameters to a model can help to reveal hidden effects and improve estimates. However, more parameters always results in a better model “fit”. While more complex models fit the data better, they often predict new data worse. Models that have many parameters tend to overfit more than simpler models. Generally, fit is measured by how well the model can retrodict the data used to fit the model. A common metric for this is “variance explained”, $R^2$. Monster (2) hurts, too. Underfitting produces models that are inaccurate both within and out of sample. Underfit models have learned too little, whether that be from uninformative features or too simple a model.</p>
+
+<p>So, how to navigate overfitting and underfitting? First, pick a criterion of model performance as the target—<em>what do you want the model to be good at?</em> Information theoretic based methods can provide a common and useful target.</p>
+
+<h2 id="distributions-over-actions">Distributions over Actions</h2>
 
 <table>
   <tbody>
     <tr>
       <td>It is possible to assume the set of possible actions is to pick a class label (or “reject” option) in classification or a real valued scalar as in a point estimate of a parameter. However, it is also possible to assume the set of possible actions is to pick a probability distribution over some value of interest (paramter or class label). That is, we want to perform probabilistic  prediction or probabilistic forecasting rather than predicting a single value / scalar. From a decision theoretic approach, we assume the true state of nature is a distribution, $h = p(Y</td>
       <td>x)$, with the action being another distribution, $a = q(Y</td>
-      <td>x)$.</td>
+      <td>x)$. The goal is to be as close to the true state of nature $p$ with our approximation $q$. Therefore, we want to pick $q$ to minimize $\mathbb{E}\ell(p, q)$ for a given $x$.</td>
     </tr>
   </tbody>
 </table>
+
+<h3 id="kl-divergence-cross-entropy-and-log-loss">KL-Divergence, Cross-Entropy, and Log-Loss</h3>
+
+<p>KL-divergence, cross-entropy, and log-loss are common loss functions are comparing two distributions.</p>
 
 <h2 id="scores-and-rules">Scores and Rules</h2>
 
@@ -157,7 +174,7 @@ window.onload = wrap_img;
 
 <p>To check the results of modeling and inference, we would like to know how well a model fits observed data $x$, which we can quantify with the evidence or marginal likelihood.</p>
 
-  </div><a class="u-url" href="/cached-projects/2021/05/31/Probabilistic-Predicion-Problems-Part-1.html" hidden></a>
+  </div><a class="u-url" href="/cached-projects/probability/2021/05/31/Probabilistic-Predicion-Problems-Part-1.html" hidden></a>
 </article>
 
       </div>
