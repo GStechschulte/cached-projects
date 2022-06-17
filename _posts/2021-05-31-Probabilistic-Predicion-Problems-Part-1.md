@@ -6,8 +6,6 @@ categories: [probability]
 
 Part one deals with why parameters (or latent variables) are problematic and common loss functions for comparing two probability distributions. 
 
-# Probabilistic Prediction Problems
-
 ## The Problem with Parameters
 
 Three main monsters when it comes to "modeling":
