@@ -1,8 +1,13 @@
 ---
 layout: post
-title: Data-Driven Marketplaces
+title: Intelligent Systems
 ---
 
-Uber, AirBnB, Music, Job platforms
 
-Producer - consumer relationships $\rightarrow$ no advertising 
+- Infrastructure, Transportation,
+
+- Multiple decisions at scale.
+
+- Uber, AirBnB, Music
+
+- Producer - consumer relationships $\rightarrow$ no advertising 
