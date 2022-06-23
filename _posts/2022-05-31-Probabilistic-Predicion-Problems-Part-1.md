@@ -19,7 +19,7 @@ The goal of the model should be stated before you choose your methods to tame th
 
 Regarding monster (1), adding variables and parameters to a model can help to reveal hidden effects and improve estimates. However, more parameters always results in a better model "fit". While more complex models fit the data better, they often predict new data worse. Models that have many parameters tend to overfit more than simpler models. Generally, fit is measured by how well the model can retrodict the data used to fit the model. A common metric for this is "variance explained", $R^2$. Monster (2) hurts, too. Underfitting produces models that are inaccurate both within and out of sample. Underfit models have learned too little, whether that be from uninformative features or too simple a model.
 
-So, how to navigate overfitting and underfitting? First, pick a criterion of model performance as the target—_what do you want the model to be good at?_ Information theoretic based methods can provide a common and useful target.  
+So, how to navigate overfitting and underfitting? First, pick a criterion of model performance as the target—_what do you want the model to be good at?_ Methods based on information theory can provide a common and useful target.  
 
 ## Distributions over Actions
 
