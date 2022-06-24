@@ -134,15 +134,7 @@ window.onload = wrap_img;
 
 <h2 id="distributions-over-actions">Distributions over Actions</h2>
 
-<table>
-  <tbody>
-    <tr>
-      <td>It is possible to assume the set of possible actions is to pick a class label (or “reject” option) in classification or a real valued scalar as in a point estimate of a parameter. However, it is also possible to assume the set of possible actions is to pick a probability distribution over some value of interest (paramter or class label). That is, we want to perform probabilistic  prediction or probabilistic forecasting rather than predicting a single value / scalar. From a decision theoretic approach, we assume the true state of nature is a distribution, $h = p(Y</td>
-      <td>x)$, with the action being another distribution, $a = q(Y</td>
-      <td>x)$. The goal is to be as close to the true state of nature $p$ with our approximation $q$. Therefore, we want to pick $q$ to minimize $\mathbb{E}\ell(p, q)$ for a given $x$.</td>
-    </tr>
-  </tbody>
-</table>
+<p>It is possible to assume the set of possible actions is to pick a class label (or “reject” option) in classification or a real valued scalar as in a point estimate of a parameter. However, it is also possible to assume the set of possible actions is to pick a probability distribution over some value of interest (paramter or class label). That is, we want to perform probabilistic  prediction or probabilistic forecasting rather than predicting a single value / scalar. From a decision theoretic approach, we assume the true state of nature is a distribution, $h = p(Y \vert x)$, with the action being another distribution, $a = q(Y \vert x)$. The goal is to be as close to the true state of nature $p$ with our approximation $q$. Therefore, we want to pick $q$ to minimize $\mathbb{E}\ell(p, q)$ for a given $x$.</p>
 
 <h3 id="kl-divergence-cross-entropy-and-log-loss">KL-Divergence, Cross-Entropy, and Log-Loss</h3>
 
