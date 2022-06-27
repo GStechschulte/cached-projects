@@ -4,21 +4,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>ELBO | Cached</title>
+<title>Variational Inference - ELBO | Cached</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="ELBO" />
+<meta property="og:title" content="Variational Inference - ELBO" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="If we have the joint $p(x, z)$ where $x$ is some observed data, the goal is to perform inference: given what we have observed, what can we infer about the latent states?, i.e., we want the posterior." />
-<meta property="og:description" content="If we have the joint $p(x, z)$ where $x$ is some observed data, the goal is to perform inference: given what we have observed, what can we infer about the latent states?, i.e., we want the posterior." />
+<meta name="description" content="We don’t know the real posterior so we are going to choose a distribution $Q(\theta)$ from a family of distributions $Q^$ that are easy to work with and parameterized by $\theta$. The approximate distribution should be *as close as possible to the true posterior. This closeness is measured using KL-Divergence. If we have the joint $p(x, z)$ where $x$ is some observed data, the goal is to perform inference: given what we have observed, what can we infer about the latent states?, i.e , we want the posterior." />
+<meta property="og:description" content="We don’t know the real posterior so we are going to choose a distribution $Q(\theta)$ from a family of distributions $Q^$ that are easy to work with and parameterized by $\theta$. The approximate distribution should be *as close as possible to the true posterior. This closeness is measured using KL-Divergence. If we have the joint $p(x, z)$ where $x$ is some observed data, the goal is to perform inference: given what we have observed, what can we infer about the latent states?, i.e , we want the posterior." />
 <link rel="canonical" href="https://gstechschulte.github.io/cached-projects/probability/optimization/2022/06/23/ELBO.html" />
 <meta property="og:url" content="https://gstechschulte.github.io/cached-projects/probability/optimization/2022/06/23/ELBO.html" />
 <meta property="og:site_name" content="Cached" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-06-23T00:00:00-05:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="ELBO" />
+<meta property="twitter:title" content="Variational Inference - ELBO" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-06-23T00:00:00-05:00","datePublished":"2022-06-23T00:00:00-05:00","description":"If we have the joint $p(x, z)$ where $x$ is some observed data, the goal is to perform inference: given what we have observed, what can we infer about the latent states?, i.e., we want the posterior.","headline":"ELBO","mainEntityOfPage":{"@type":"WebPage","@id":"https://gstechschulte.github.io/cached-projects/probability/optimization/2022/06/23/ELBO.html"},"url":"https://gstechschulte.github.io/cached-projects/probability/optimization/2022/06/23/ELBO.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-06-23T00:00:00-05:00","datePublished":"2022-06-23T00:00:00-05:00","description":"We don’t know the real posterior so we are going to choose a distribution $Q(\\theta)$ from a family of distributions $Q^$ that are easy to work with and parameterized by $\\theta$. The approximate distribution should be *as close as possible to the true posterior. This closeness is measured using KL-Divergence. If we have the joint $p(x, z)$ where $x$ is some observed data, the goal is to perform inference: given what we have observed, what can we infer about the latent states?, i.e , we want the posterior.","headline":"Variational Inference - ELBO","mainEntityOfPage":{"@type":"WebPage","@id":"https://gstechschulte.github.io/cached-projects/probability/optimization/2022/06/23/ELBO.html"},"url":"https://gstechschulte.github.io/cached-projects/probability/optimization/2022/06/23/ELBO.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/cached-projects/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gstechschulte.github.io/cached-projects/feed.xml" title="Cached" /><link rel="shortcut icon" type="image/x-icon" href="/cached-projects/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -89,13 +89,13 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">ELBO</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-06-23T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Variational Inference - ELBO</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-06-23T00:00:00-05:00" itemprop="datePublished">
         Jun 23, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
     
     
-      3 min read
+      4 min read
     
 </span></p>
 
@@ -114,9 +114,11 @@ window.onload = wrap_img;
     </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>If we have the joint $p(x, z)$ where $x$ is some observed data, the goal is to perform inference: given what we have observed, what can we infer about the latent states?, i.e., we want the posterior.</p>
+    <p>We don’t know the real posterior so we are going to choose a distribution $Q(\theta)$ from a family of distributions $Q^<em>$ that are <strong>easy to work with</strong> and parameterized by $\theta$. The approximate distribution should be *as close as possible</em> to the true posterior. This closeness is measured using KL-Divergence. If we have the joint $p(x, z)$ where $x$ is some observed data, the goal is to perform inference: given what we have observed, what can we infer about the latent states?, i.e , we want the posterior.</p>
 
-<p>Recall Bayes theorem…</p>
+<p>Recall Bayes theorem:</p>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>z</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mi mathvariant="normal">∣</mi><mi>z</mi><mo stretchy="false">)</mo><mi>p</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">p(z | x) = \frac{p(x|z)p(z)}{p(x)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord">∣</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
 
 <p>The problem is the marginal $p(x = D)$ as this could require a hundred, thousand, . . .dimensional integral:</p>
 
