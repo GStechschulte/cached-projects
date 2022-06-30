@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Probabilistic Prediction Problems - Part 2 | Cached</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Probabilistic Prediction Problems - Part 2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Part two deals with model evaluation and selection using the metrics and scoring rules defined in part one." />
+<meta property="og:description" content="Part two deals with model evaluation and selection using the metrics and scoring rules defined in part one." />
+<link rel="canonical" href="https://gstechschulte.github.io/cached-projects/probability/2022/06/30/Probabilistic-Prediction-Problems-Part-2.html" />
+<meta property="og:url" content="https://gstechschulte.github.io/cached-projects/probability/2022/06/30/Probabilistic-Prediction-Problems-Part-2.html" />
+<meta property="og:site_name" content="Cached" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-30T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Probabilistic Prediction Problems - Part 2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-06-30T00:00:00-05:00","datePublished":"2022-06-30T00:00:00-05:00","description":"Part two deals with model evaluation and selection using the metrics and scoring rules defined in part one.","headline":"Probabilistic Prediction Problems - Part 2","mainEntityOfPage":{"@type":"WebPage","@id":"https://gstechschulte.github.io/cached-projects/probability/2022/06/30/Probabilistic-Prediction-Problems-Part-2.html"},"url":"https://gstechschulte.github.io/cached-projects/probability/2022/06/30/Probabilistic-Prediction-Problems-Part-2.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/cached-projects/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gstechschulte.github.io/cached-projects/feed.xml" title="Cached" /><link rel="shortcut icon" type="image/x-icon" href="/cached-projects/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/cached-projects/">Cached</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/cached-projects/about/">About Me</a><a class="page-link" href="/cached-projects/search/">Search</a><a class="page-link" href="/cached-projects/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Probabilistic Prediction Problems - Part 2</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-06-30T00:00:00-05:00" itemprop="datePublished">
+        Jun 30, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/cached-projects/categories/#probability">probability</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Part two deals with model evaluation and selection using the metrics and scoring rules defined in part one.</p>
+
+<h2 id="the-problem-with-parameters">The Problem with Parameters</h2>
+
+<p>Three main monsters when it comes to “modeling”:</p>
+<ol>
+  <li>Overfitting</li>
+  <li>Underfitting</li>
+  <li>Con-founders</li>
+</ol>
+
+<p>The goal of the model should be stated before you choose your methods to tame these monsters:</p>
+<ul>
+  <li>Is the goal <em>predictive power</em>?</li>
+  <li>Is the goal to understand <em>causes</em>?</li>
+</ul>
+
+<p>Regarding monster (1), adding variables and parameters to a model can help to reveal hidden effects and improve estimates. However, more parameters always results in a better model “fit”. While more complex models fit the data better, they often predict new data worse. Models that have many parameters tend to overfit more than simpler models. Generally, fit is measured by how well the model can retrodict the data used to fit the model. A common metric for this is “variance explained”, $R^2$. Monster (2) hurts, too as underfitting produces models that are inaccurate both within and out of sample. Underfit models have learned too little, whether that be from uninformative features or too simple a model.</p>
+
+<p>So, how to navigate overfitting and underfitting? First, pick a criterion of model performance as the target—<em>what do you want the model to be good at?</em> Methods based on information theory can provide a common and useful target.</p>
+
+<h2 id="evaluating-generative-models">Evaluating Generative Models</h2>
+
+<p>Generative models aim to model the <em>underlying generative process</em>  of the data, typically using Bayes theorem from which we can also generate new samples:</p>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>z</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mi mathvariant="normal">∣</mi><mi>z</mi><mo stretchy="false">)</mo><mi>p</mi><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">p(z | x) = \frac{p(x|z)p(z)}{p(x)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord">∣</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
+
+<p>Generally speaking, when evaluating generative models, we want the metrics to capture:</p>
+<ul>
+  <li>sample quality - are the samples generated by the model part of the data distribution?</li>
+  <li>sample diversity - are the samples from the model distribution capturing all modes of the data?</li>
+  <li>generalization - is the model generalizing beyond the training data?</li>
+</ul>
+
+<h2 id="model-selection-and-evaluation">Model Selection and Evaluation</h2>
+
+<p>To check the results of modeling and inference, we would like to know how well a model fits observed data $x$, which we can quantify with the evidence or marginal likelihood.</p>
+
+  </div><a class="u-url" href="/cached-projects/probability/2022/06/30/Probabilistic-Prediction-Problems-Part-2.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/cached-projects/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/cached-projects/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/cached-projects/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Ideas, thoughts, and projects</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/GStechschulte" target="_blank" title="GStechschulte"><svg class="svg-icon grey"><use xlink:href="/cached-projects/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/__gsteck__" target="_blank" title="__gsteck__"><svg class="svg-icon grey"><use xlink:href="/cached-projects/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

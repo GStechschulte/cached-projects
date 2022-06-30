@@ -8,8 +8,8 @@
 <meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Probabilistic Prediction Problems - Part 1" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Part one deals with why parameters (or latent variables) are problematic and common loss functions for comparing two probability distributions." />
-<meta property="og:description" content="Part one deals with why parameters (or latent variables) are problematic and common loss functions for comparing two probability distributions." />
+<meta name="description" content="Part one is a collection of notes on the problems with probabilistic predictions." />
+<meta property="og:description" content="Part one is a collection of notes on the problems with probabilistic predictions." />
 <link rel="canonical" href="https://gstechschulte.github.io/cached-projects/probability/2022/05/31/Probabilistic-Predicion-Problems-Part-1.html" />
 <meta property="og:url" content="https://gstechschulte.github.io/cached-projects/probability/2022/05/31/Probabilistic-Predicion-Problems-Part-1.html" />
 <meta property="og:site_name" content="Cached" />
@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Probabilistic Prediction Problems - Part 1" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-05-31T00:00:00-05:00","datePublished":"2022-05-31T00:00:00-05:00","description":"Part one deals with why parameters (or latent variables) are problematic and common loss functions for comparing two probability distributions.","headline":"Probabilistic Prediction Problems - Part 1","mainEntityOfPage":{"@type":"WebPage","@id":"https://gstechschulte.github.io/cached-projects/probability/2022/05/31/Probabilistic-Predicion-Problems-Part-1.html"},"url":"https://gstechschulte.github.io/cached-projects/probability/2022/05/31/Probabilistic-Predicion-Problems-Part-1.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-05-31T00:00:00-05:00","datePublished":"2022-05-31T00:00:00-05:00","description":"Part one is a collection of notes on the problems with probabilistic predictions.","headline":"Probabilistic Prediction Problems - Part 1","mainEntityOfPage":{"@type":"WebPage","@id":"https://gstechschulte.github.io/cached-projects/probability/2022/05/31/Probabilistic-Predicion-Problems-Part-1.html"},"url":"https://gstechschulte.github.io/cached-projects/probability/2022/05/31/Probabilistic-Predicion-Problems-Part-1.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/cached-projects/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gstechschulte.github.io/cached-projects/feed.xml" title="Cached" /><link rel="shortcut icon" type="image/x-icon" href="/cached-projects/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -111,58 +111,48 @@ window.onload = wrap_img;
     </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Part one deals with why parameters (or latent variables) are problematic and common loss functions for comparing two probability distributions.</p>
-
-<h2 id="the-problem-with-parameters">The Problem with Parameters</h2>
-
-<p>Three main monsters when it comes to “modeling”:</p>
-<ol>
-  <li>Overfitting</li>
-  <li>Underfitting</li>
-  <li>Con-founders</li>
-</ol>
-
-<p>The goal of the model should be stated before you choose your methods to tame these monsters:</p>
-<ul>
-  <li>Is the goal <em>predictive power</em>?</li>
-  <li>Is the goal to understand <em>causes</em>?</li>
-</ul>
-
-<p>Regarding monster (1), adding variables and parameters to a model can help to reveal hidden effects and improve estimates. However, more parameters always results in a better model “fit”. While more complex models fit the data better, they often predict new data worse. Models that have many parameters tend to overfit more than simpler models. Generally, fit is measured by how well the model can retrodict the data used to fit the model. A common metric for this is “variance explained”, $R^2$. Monster (2) hurts, too. Underfitting produces models that are inaccurate both within and out of sample. Underfit models have learned too little, whether that be from uninformative features or too simple a model.</p>
-
-<p>So, how to navigate overfitting and underfitting? First, pick a criterion of model performance as the target—<em>what do you want the model to be good at?</em> Methods based on information theory can provide a common and useful target.</p>
+    <p>Part one is a collection of notes on the problems with probabilistic predictions.</p>
 
 <h2 id="distributions-over-actions">Distributions over Actions</h2>
 
-<p>It is possible to assume the set of possible actions is to pick a class label (or “reject” option) in classification or a real valued scalar as in a point estimate of a parameter. However, it is also possible to assume the set of possible actions is to pick a probability distribution over some value of interest (paramter or class label). That is, we want to perform probabilistic  prediction or probabilistic forecasting rather than predicting a single value / scalar. From a decision theoretic approach, we assume the true state of nature is a distribution, $h = p(Y \vert x)$, with the action being another distribution, $a = q(Y \vert x)$. The goal is to be as close to the true state of nature $p$ with our approximation $q$. Therefore, we want to pick $q$ to minimize $\mathbb{E}\ell(p, q)$ for a given $x$.</p>
+<p>It is possible to assume the set of possible actions is to pick a class label (or “reject” option) in classification or a real valued scalar as in a point estimate of a parameter. However, it is also possible to assume the set of possible actions is to pick a probability distribution over some value of interest (paramter or class label). That is, we want to perform probabilistic prediction or probabilistic forecasting rather than predicting a scalar. From a decision theoretic approach, we assume the true state of nature is a distribution, $h = p(Y \vert x)$, with the action being another distribution, $a = q(Y \vert x)$. The goal is to be as close to the true state of nature $p$ with our approximation $q$. Therefore, we want to pick $q$ to minimize $\mathbb{E}\ell(p, q)$ for a given $x$.</p>
 
-<h3 id="kl-divergence-cross-entropy-and-log-loss">KL-Divergence, Cross-Entropy, and Log-Loss</h3>
+<p>When making a prediction, the accuracy depends upon the definition of the target, and there is no universal best target. Rather, a decision-theoretic approach should be taken, in particular because of the following two dimensions:</p>
 
-<p>KL-divergence, cross-entropy, and log-loss are common loss functions are comparing two distributions.</p>
+<ol>
+  <li><strong>Cost benefit analysis</strong> - What’s the risk (or cost) we face when we are wrong? What’s the payoff when we are right?</li>
+  <li><strong>Context</strong> - Some prediction tasks are inheritently harder than others. Therefore, how can we judge how much a model can possibly improve prediction?</li>
+</ol>
 
-<h2 id="scores-and-rules">Scores and Rules</h2>
+<h2 id="kl-divergence-cross-entropy-and-log-loss">KL Divergence, Cross-Entropy, and Log-Loss</h2>
+
+<p>If we want to compare two distributions, a common loss function is Kullback-Leibler Divergence (KL Divergence).</p>
 
 <h3 id="proper-scoring-rules">Proper Scoring Rules</h3>
+
+<p>The key property of proper scoring rules is that the loss function is minimized i.f.f the decision maker picks the distribution $q$ that matches the true distribution $p$. Such a loss function $\ell$ is a <em>proper scoring rule</em>.</p>
 
 <p>Maximizing a proper scoring rule will force the model to match the true probabilities, i.e., the probabilities are calibrated. For example, when the weather person states the probability of rain is $70\%$, then it should rain about $70\%$ of the time.</p>
 
 <p>The following are proper scoring “loss functions”:</p>
 
 <ul>
-  <li>Negative log-likelihood</li>
-  <li>Cross entropy</li>
-  <li>Brier score</li>
+  <li>Negative log-likelihood - negative of the log-likelihood because <em>maximization is for losers</em>
+    <ul>
+      <li>log scoring rule - log of the joint probability</li>
+    </ul>
+  </li>
+  <li>Cross entropy -
+    <ul>
+      <li>log-loss</li>
+    </ul>
+  </li>
+  <li>Brier score -</li>
 </ul>
 
-<h3 id="evaluating-predictive-models">Evaluating Predictive Models</h3>
+<h3 id="information-and-uncertainty">Information and Uncertainty</h3>
 
-<ul>
-  <li>Log-scoring rule</li>
-</ul>
-
-<h3 id="model-selection-and-evaluation">Model Selection and Evaluation</h3>
-
-<p>To check the results of modeling and inference, we would like to know how well a model fits observed data $x$, which we can quantify with the evidence or marginal likelihood.</p>
+<p>We want to use the log probability of the data to score the accuracy of competing models</p>
 
   </div><a class="u-url" href="/cached-projects/probability/2022/05/31/Probabilistic-Predicion-Problems-Part-1.html" hidden></a>
 </article>
